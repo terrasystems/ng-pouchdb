@@ -37,8 +37,8 @@ angular.module('pouchdb')
       }
 
       database.changes({
-        live: true,
-        onChange: function(change) {
+        live: true
+      }).on('change', function(change) {
           if (!change.deleted) {
             database.get(change.id).then(
               function(res) {
@@ -48,7 +48,6 @@ angular.module('pouchdb')
                 console.log(err);
               });
           }
-        }
       });
 
       var listener = function(ngValue) {
